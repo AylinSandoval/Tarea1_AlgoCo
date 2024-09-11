@@ -8,27 +8,24 @@
 
 // Función para leer el archivo de casos de prueba
 int** leerCasosPrueba(int *numCasos, int **tamanos) {
-    FILE *fptr = fopen("casospruebas.txt", "r");  // Abre el archivo para lectura
+    FILE *fptr = fopen("casospruebas.txt", "r");  
 
     if (fptr == NULL) {
         printf("Error al abrir el archivo!\n");
         exit(1);
     }
 
-    // Leer el archivo y cargar los casos de prueba
     int **arreglos = (int **)malloc(NUM_CASES * sizeof(int *));
     *tamanos = (int *)malloc(NUM_CASES * sizeof(int));
     *numCasos = 0;
 
     while (*numCasos < NUM_CASES) {
         int size;
-        if (fscanf(fptr, "%d", &size) != 1) break;  // Lee el tamaño del arreglo
+        if (fscanf(fptr, "%d", &size) != 1) break; 
 
-        // Reserva memoria para el arreglo
         arreglos[*numCasos] = (int *)malloc(size * sizeof(int));
         (*tamanos)[*numCasos] = size;
 
-        // Lee el arreglo
         for (int i = 0; i < size; i++) {
             if (fscanf(fptr, "%d", &arreglos[*numCasos][i]) != 1) {
                 printf("Error al leer los datos del archivo!\n");
@@ -43,7 +40,8 @@ int** leerCasosPrueba(int *numCasos, int **tamanos) {
     return arreglos;
 }
 
-// Función auxiliar para intercambiar dos elementos en un arreglo
+
+
 void swap(int a[], int b, int c) {
     int aux = a[b];
     a[b] = a[c];
